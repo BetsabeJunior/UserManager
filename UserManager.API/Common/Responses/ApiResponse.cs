@@ -1,5 +1,5 @@
-﻿// <copyright file="ApiResponse.cs" company="PlaceholderCompany">
-// Copyright (c) DITOS SAS. All rights reserved.
+﻿// <copyright file="ApiResponse.cs" company="DITO SAS">
+// Copyright (c) DITO SAS. All rights reserved.
 // </copyright>
 
 namespace UserManager.API.Common.Responses
