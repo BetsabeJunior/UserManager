@@ -15,12 +15,12 @@ namespace UserManager.Domain.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the user's first name.
+        /// Gets or sets the user first name.
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or sets the user's last name.
+        /// Gets or sets the user last name.
         /// </summary>
         public string LastName { get; set; }
 
@@ -40,7 +40,7 @@ namespace UserManager.Domain.Entities
         public string IdentificationNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets the user's email address.
+        /// Gets or sets the user email address.
         /// </summary>
         public string Email { get; set; }
 

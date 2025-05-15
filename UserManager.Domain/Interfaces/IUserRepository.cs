@@ -31,7 +31,7 @@ namespace UserManager.Domain.Interfaces
         /// </summary>
         /// <param name="user">User to add.</param>
         /// <returns>Task.</returns>
-        Task AddAsync(User user);
+        Task<User> AddAsync(User user);
 
         /// <summary>
         /// Update user data.
