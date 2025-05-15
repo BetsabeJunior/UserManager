@@ -1,5 +1,5 @@
-﻿// <copyright file="UpdateUserRequest.cs" company="DITOS SAS">
-// Copyright (c) DITOS SAS. All rights reserved.
+﻿// <copyright file="UpdateUserRequest.cs" company="DITO SAS">
+// Copyright (c) DITO SAS. All rights reserved.
 // </copyright>
 
 namespace UserManager.Application.DTOS

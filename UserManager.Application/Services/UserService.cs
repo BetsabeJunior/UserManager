@@ -6,24 +6,28 @@ namespace UserManager.Application.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using UserManager.Application.DTOS;
     using UserManager.Application.Interfaces;
     using UserManager.Domain.Entities;
-    using UserManager.Domain.Interfaces;
+    using UserManager.Infrastructure.Interfaces;
 
     /// <summary>
-    /// This class manages users.
+    /// Provides services related to user operations.
     /// </summary>
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJwtService _jwtService;
 
         /// <summary>
-        /// Constructor with user repository.
+        /// Initializes a new instance of the <see cref="UserService"/> class.
         /// </summary>
-        /// <param name="userRepository">User repository.</param>
-        public UserService(IUserRepository userRepository)
+        /// <param name="userRepository">The user repository.</param>
+        /// <param name="jwtService">The JWT service.</param>
+        public UserService(IUserRepository userRepository, IJwtService jwtService)
         {
             _userRepository = userRepository;
+            _jwtService = jwtService;
         }
 
         /// <inheritdoc/>
@@ -54,6 +58,26 @@ namespace UserManager.Application.Services
         public async Task DeleteAsync(int id)
         {
             await _userRepository.DeleteAsync(id);
+        }
+
+        /// <inheritdoc/>
+        public async Task<AuthResponse> AuthenticateAsync(LoginRequest request)
+        {
+            var user = await _userRepository.GetByEmailAndPasswordAsync(request.Email, request.Password);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            var token = _jwtService.GenerateToken(user);
+
+            return new AuthResponse
+            {
+                Token = token,
+                Email = user.Email,
+                FullName = $"{user.FirstName} {user.LastName}",
+            };
         }
     }
 }

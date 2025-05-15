@@ -6,45 +6,53 @@ namespace UserManager.Application.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using UserManager.Application.DTOS;
     using UserManager.Domain.Entities;
 
     /// <summary>
-    /// Interface for user service.
+    /// Defines methods for user-related operations.
     /// </summary>
     public interface IUserService
     {
         /// <summary>
-        /// Get all users.
+        /// Gets all users asynchronously.
         /// </summary>
-        /// <returns>List of users.</returns>
+        /// <returns>A collection of users.</returns>
         Task<IEnumerable<User>> GetAllAsync();
 
         /// <summary>
-        /// Get one user by id.
+        /// Gets a user by ID asynchronously.
         /// </summary>
-        /// <param name="id">User id.</param>
-        /// <returns>User or null.</returns>
+        /// <param name="id">The ID of the user.</param>
+        /// <returns>The user, or null if not found.</returns>
         Task<User> GetByIdAsync(int id);
 
         /// <summary>
-        /// Create a new user.
+        /// Adds a new user asynchronously.
         /// </summary>
-        /// <param name="user">User to create.</param>
-        /// <returns>Task.</returns>
+        /// <param name="user">The user to add.</param>
+        /// <returns>The created user.</returns>
         Task<User> AddAsync(User user);
 
         /// <summary>
-        /// Update user.
+        /// Updates an existing user asynchronously.
         /// </summary>
-        /// <param name="user">User with new data.</param>
-        /// <returns>Task.</returns>
+        /// <param name="user">The user with updated information.</param>
+        /// <returns>A task representing the operation.</returns>
         Task UpdateAsync(User user);
 
         /// <summary>
-        /// Delete user by id.
+        /// Deletes a user by ID asynchronously.
         /// </summary>
-        /// <param name="id">User id.</param>
-        /// <returns>Task.</returns>
+        /// <param name="id">The ID of the user to delete.</param>
+        /// <returns>A task representing the operation.</returns>
         Task DeleteAsync(int id);
+
+        /// <summary>
+        /// Authenticates a user based on login credentials.
+        /// </summary>
+        /// <param name="request">The login request containing email and password.</param>
+        /// <returns>An authentication response with the token and user information.</returns>
+        Task<AuthResponse> AuthenticateAsync(LoginRequest request);
     }
 }
