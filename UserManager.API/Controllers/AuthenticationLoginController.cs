@@ -1,5 +1,5 @@
-﻿// <copyright file="AuthenticationLoginController.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="AuthenticationLoginController.cs" company="DITO SAS">
+// Copyright (c) DITO SAS. All rights reserved.
 // </copyright>
 
 namespace UserManager.API.Controllers
@@ -7,27 +7,31 @@ namespace UserManager.API.Controllers
     using Microsoft.AspNetCore.Mvc;
     using UserManager.Application.DTOS;
     using UserManager.Application.Interfaces;
-    using UserManager.Domain.Entities;
 
     /// <summary>
-    /// This class is the Authentication Login controller.
+    /// This controller is for login. People use this to enter to system.
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class AuthenticationLoginController : Controller
     {
-        // This is the service to manage users.
+        // This is the service for user things (login, etc).
         private readonly IUserService _userService;
 
+        /// <summary>
+        /// Constructor for this controller. Put user service here.
+        /// </summary>
+        /// <param name="userService">Service to work with users.</param>
         public AuthenticationLoginController(IUserService userService)
         {
             _userService = userService;
         }
 
         /// <summary>
-        /// This method gets the token, fullName and email the users.
+        /// This method is for login. You give email and password. It give token if correct.
         /// </summary>
-        /// <returns>List of users.</returns>
+        /// <param name="request">This is the login request. It has email and password.</param>
+        /// <returns>If ok, return token and info. If bad, return unauthorized.</returns>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {

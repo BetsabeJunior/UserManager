@@ -12,6 +12,7 @@ namespace UserManager.API.Controllers
     using UserManager.Application.DTOS;
     using UserManager.Application.Interfaces;
     using UserManager.Domain.Entities;
+    using UserManager.Infrastructure.Interfaces;
 
     /// <summary>
     /// This controller helps to manage users (create, read, update, delete).
@@ -22,16 +23,18 @@ namespace UserManager.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly ILogger<UsersController> _logger;
+        private readonly IIdentificationTypeRepository _repository;
 
         /// <summary>
         /// Constructor. Gets services to use in this controller.
         /// </summary>
         /// <param name="userService">Service for user actions.</param>
         /// <param name="logger">Logger to write information in console or file.</param>
-        public UsersController(IUserService userService, ILogger<UsersController> logger)
+        public UsersController(IUserService userService, ILogger<UsersController> logger, IIdentificationTypeRepository identificationTypeRepository)
         {
             _userService = userService;
             _logger = logger;
+            _repository = identificationTypeRepository;
         }
 
         /// <summary>
@@ -88,6 +91,12 @@ namespace UserManager.API.Controllers
         [ProducesResponseType(typeof(ApiResponse<string>), 400)]
         public async Task<IActionResult> Create([FromBody] CreateUserRequest dto)
         {
+            var identificationType = await _repository.GetByIdAsync(dto.IdentificationTypeId);
+            if (identificationType == null)
+            {
+                return BadRequest(ApiResponse<string>.Fail("Identification type is not valid."));
+            }
+
             var emailValidator = new EmailAddressAttribute();
             if (string.IsNullOrWhiteSpace(dto.Email) || !emailValidator.IsValid(dto.Email))
             {
@@ -139,10 +148,12 @@ namespace UserManager.API.Controllers
                 return NotFound(ApiResponse<string>.Fail("User not found."));
             }
 
-            if (string.IsNullOrWhiteSpace(dto.Email) || !dto.Email.Contains("@"))
+            var emailValidator = new EmailAddressAttribute();
+            if (string.IsNullOrWhiteSpace(dto.Email) || !emailValidator.IsValid(dto.Email))
             {
                 return BadRequest(ApiResponse<string>.Fail("Email is not valid."));
             }
+
 
             if (dto.Password.Length < 6)
             {
