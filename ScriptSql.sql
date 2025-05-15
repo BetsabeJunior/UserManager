@@ -39,8 +39,12 @@ GO
 INSERT INTO Usuarios (Nombre, Apellido, TipoIdentificacionId , NumeroIdentificacion, CorreoElectronico, Contrasena) 
 		VALUES ('Betsabe Junior', 'Hoyos Barrios', 1, '123456789', 'betsabehoyos@gmail.com', 'Bets4123*')
 
+GO
+
 SELECT u.Id, u.Nombre, u.Apellido, t.Codigo, t.Nombre , u.NumeroIdentificacion, 
 	   u.CorreoElectronico, u.Contrasena 
 FROM Usuarios u
 INNER JOIN 
 	TipoIdentificacion t ON t.Id = u.TipoIdentificacionId
+
+SELECT NEWID() AS KeyAPI;
