@@ -44,7 +44,6 @@ namespace UserManager.Application.Services
             return await _userRepository.AddAsync(user);
         }
 
-
         /// <inheritdoc/>
         public async Task UpdateAsync(User user)
         {
