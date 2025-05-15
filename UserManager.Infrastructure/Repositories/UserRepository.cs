@@ -8,7 +8,7 @@ namespace UserManager.Infrastructure.Repositories
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using UserManager.Domain.Entities;
-    using UserManager.Domain.Interfaces;
+    using UserManager.Infrastructure.Interfaces;
     using UserManager.Infrastructure.Data;
 
     /// <summary>
@@ -85,6 +85,11 @@ namespace UserManager.Infrastructure.Repositories
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<User> GetByEmailAndPasswordAsync(string email, string password)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
         }
     }
 }
