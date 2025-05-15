@@ -1,0 +1,17 @@
+D:\UserManager\UserManager.Infrastructure\bin\Debug\net8.0\UserManager.Infrastructure.deps.json
+D:\UserManager\UserManager.Infrastructure\bin\Debug\net8.0\UserManager.Infrastructure.dll
+D:\UserManager\UserManager.Infrastructure\bin\Debug\net8.0\UserManager.Infrastructure.pdb
+D:\UserManager\UserManager.Infrastructure\bin\Debug\net8.0\UserManager.Domain.dll
+D:\UserManager\UserManager.Infrastructure\bin\Debug\net8.0\UserManager.Domain.pdb
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.csproj.AssemblyReference.cache
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.AssemblyInfoInputs.cache
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.AssemblyInfo.cs
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.csproj.CoreCompileInputs.cache
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserMana.62FC1B60.Up2Date
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.dll
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\refint\UserManager.Infrastructure.dll
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.pdb
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\ref\UserManager.Infrastructure.dll
+D:\UserManager\UserManager.Infrastructure\bin\Debug\net8.0\UserManager.Infrastructure.runtimeconfig.json
+D:\UserManager\UserManager.Infrastructure\obj\Debug\net8.0\UserManager.Infrastructure.genruntimeconfig.cache

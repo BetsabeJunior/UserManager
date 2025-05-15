@@ -1,0 +1,6 @@
+D:\UserManager\UserManager.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_UserManager.Tests
+D:\UserManager\UserManager.Tests\obj\Debug\net8.0\UserManager.Tests.csproj.AssemblyReference.cache
+D:\UserManager\UserManager.Tests\obj\Debug\net8.0\UserManager.Tests.GeneratedMSBuildEditorConfig.editorconfig
+D:\UserManager\UserManager.Tests\obj\Debug\net8.0\UserManager.Tests.AssemblyInfoInputs.cache
+D:\UserManager\UserManager.Tests\obj\Debug\net8.0\UserManager.Tests.AssemblyInfo.cs
+D:\UserManager\UserManager.Tests\obj\Debug\net8.0\UserManager.Tests.csproj.CoreCompileInputs.cache

@@ -1,0 +1,14 @@
+D:\UserManager\UserManager.Domain\bin\Debug\net8.0\UserManager.Domain.deps.json
+D:\UserManager\UserManager.Domain\bin\Debug\net8.0\UserManager.Domain.dll
+D:\UserManager\UserManager.Domain\bin\Debug\net8.0\UserManager.Domain.pdb
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.AssemblyInfoInputs.cache
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.AssemblyInfo.cs
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.csproj.CoreCompileInputs.cache
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.dll
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\refint\UserManager.Domain.dll
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.pdb
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\ref\UserManager.Domain.dll
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.csproj.AssemblyReference.cache
+D:\UserManager\UserManager.Domain\bin\Debug\net8.0\UserManager.Domain.runtimeconfig.json
+D:\UserManager\UserManager.Domain\obj\Debug\net8.0\UserManager.Domain.genruntimeconfig.cache
