@@ -44,6 +44,3 @@ SELECT u.Id, u.Nombre, u.Apellido, t.Codigo, t.Nombre , u.NumeroIdentificacion,
 FROM Usuarios u
 INNER JOIN 
 	TipoIdentificacion t ON t.Id = u.TipoIdentificacionId
-
-
-SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Users';
