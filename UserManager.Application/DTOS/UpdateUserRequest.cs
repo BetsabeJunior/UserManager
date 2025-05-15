@@ -1,15 +1,15 @@
-﻿// <copyright file="CreateUserRequest.cs" company="DITOS SAS">
+﻿// <copyright file="UpdateUserRequest.cs" company="DITOS SAS">
 // Copyright (c) DITOS SAS. All rights reserved.
 // </copyright>
 
 namespace UserManager.Application.DTOS
 {
     /// <summary>
-    /// This class is used to create a new user.
+    /// This class is used to update a  user.
     /// It includes the user first name, last name,
     /// ID type and number, password, and email.
     /// </summary>
-    public class CreateUserRequest
+    public class UpdateUserRequest
     {
         /// <summary>
         /// The user first name.
