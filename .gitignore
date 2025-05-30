@@ -1,0 +1,71 @@
+## Archivos de compilación
+bin/
+obj/
+
+## Archivos de usuario de Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Archivos de Rider
+.idea/
+*.sln.iml
+
+## Archivos de configuración y temporales
+.vscode/
+*.swp
+*.bak
+*.tmp
+*.log
+
+## Dependencias descargadas
+packages/
+*.nupkg
+*.snupkg
+
+## Publicaciones
+publish/
+out/
+
+## Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Archivos generados por herramientas
+TestResults/
+*.vspscc
+*.vssscc
+.vs/
+
+## Secretos y configuración local
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## Archivos de cobertura de código
+coverage/
+*.coverage
+*.coveragexml
+*.codecov
+
+## Archivos de análisis estático
+
+.editorconfig
+
+## Archivos de contenedores
+docker-compose.override.yml
+
+## Archivos de entorno
+.env
+.env.*
+
+## Logs
+*.log
+
+## Certificados de desarrollo
+*.pfx
+*.key
+*.cer
+*.pem
