@@ -9,6 +9,8 @@ namespace UserManager.API.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using UserManager.API.Common.Responses;
+    using UserManager.Application.DTOS;
+    using UserManager.Domain.Entities;
     using UserManager.Infrastructure.Interfaces;
 
     /// <summary>
@@ -40,11 +42,12 @@ namespace UserManager.API.Controllers
         /// <returns>A list of identification types.</returns>
         [Authorize]
         [HttpGet("GetAllIdentificationType")]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<IdentificationType>>), 200)]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Getting all type identifications");
             var types = await _repository.GetAllAsync();
-            return Ok(types);
+            return Ok(ApiResponse<IEnumerable<IdentificationType>>.Ok(types));
         }
     }
 }
