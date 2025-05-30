@@ -12,6 +12,7 @@ namespace UserManager.Tests.Controllers
     using UserManager.Application.DTOS;
     using UserManager.Application.Interfaces;
     using UserManager.Domain.Entities;
+    using UserManager.Infrastructure.Interfaces;
 
     /// <summary>
     /// This class tests the UsersControllerTests.
@@ -19,6 +20,7 @@ namespace UserManager.Tests.Controllers
     public class UsersControllerTests
     {
         private readonly Mock<IUserService> mockUserService;
+        private readonly Mock<IIdentificationTypeRepository> mockIIdentificationTypeRepository;
         private readonly Mock<ILogger<UsersController>> mockLogger;
         private readonly UsersController controller;
 
@@ -28,8 +30,9 @@ namespace UserManager.Tests.Controllers
         public UsersControllerTests()
         {
             this.mockUserService = new Mock<IUserService>();
+            this.mockIIdentificationTypeRepository = new Mock<IIdentificationTypeRepository>();
             this.mockLogger = new Mock<ILogger<UsersController>>();
-            this.controller = new UsersController(this.mockUserService.Object, this.mockLogger.Object);
+            this.controller = new UsersController(this.mockUserService.Object, this.mockLogger.Object, this.mockIIdentificationTypeRepository.);
         }
 
         /// <summary>
