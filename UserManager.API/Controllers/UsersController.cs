@@ -7,6 +7,7 @@ namespace UserManager.API.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using System;
     using System.ComponentModel.DataAnnotations;
     using UserManager.API.Common.Responses;
     using UserManager.Application.DTOS;
@@ -43,12 +44,29 @@ namespace UserManager.API.Controllers
         /// <returns>List of all users.</returns>
         [Authorize]
         [HttpGet("GetAllUser")]
-        [ProducesResponseType(typeof(ApiResponse<IEnumerable<User>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<UserDTOs>>), 200)]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Getting all users");
             var users = await _userService.GetAllAsync();
-            return Ok(ApiResponse<IEnumerable<User>>.Ok(users));
+            var userDtos = new List<UserDTOs>();
+
+            foreach (var user in users)
+            {
+                userDtos.Add(new UserDTOs
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    IdentificationNumber = user.IdentificationNumber,
+                    Code = user.IdentificationType.Code,
+                    Name = user.IdentificationType?.Name,
+                    Email = user.Email,
+                    Password = user.Password,
+                });
+            }
+
+            return Ok(ApiResponse<IEnumerable<UserDTOs>>.Ok(userDtos));
         }
 
         /// <summary>
@@ -58,7 +76,7 @@ namespace UserManager.API.Controllers
         /// <returns>User with that ID.</returns>
         [Authorize]
         [HttpGet("GetUserId{id}")]
-        [ProducesResponseType(typeof(ApiResponse<User>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<UserDTOs>), 200)]
         [ProducesResponseType(typeof(ApiResponse<string>), 400)]
         [ProducesResponseType(typeof(ApiResponse<string>), 404)]
         public async Task<IActionResult> GetById(int id)
@@ -77,7 +95,19 @@ namespace UserManager.API.Controllers
                 return NotFound(ApiResponse<string>.Fail("User not found."));
             }
 
-            return Ok(ApiResponse<User>.Ok(user));
+            var userDtos = new UserDTOs
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                IdentificationNumber = user.IdentificationNumber,
+                Code = user.IdentificationType.Code,
+                Name = user.IdentificationType.Name,
+                Email = user.Email,
+                Password = user.Password,
+            };
+
+            return Ok(ApiResponse<UserDTOs>.Ok(userDtos));
         }
 
         /// <summary>
@@ -87,7 +117,7 @@ namespace UserManager.API.Controllers
         /// <returns>The created user.</returns>
         [Authorize]
         [HttpPost("CreateUser")]
-        [ProducesResponseType(typeof(ApiResponse<User>), 201)]
+        [ProducesResponseType(typeof(ApiResponse<CreateUserRequest>), 201)]
         [ProducesResponseType(typeof(ApiResponse<string>), 400)]
         public async Task<IActionResult> Create([FromBody] CreateUserRequest dto)
         {
@@ -115,7 +145,7 @@ namespace UserManager.API.Controllers
                 IdentificationTypeId = dto.IdentificationTypeId,
                 IdentificationNumber = dto.IdentificationNumber,
                 Email = dto.Email,
-                Password = dto.Password
+                Password = dto.Password,
             };
 
             _logger.LogInformation("Creating user with email: {Email}", dto.Email);
@@ -132,7 +162,7 @@ namespace UserManager.API.Controllers
         /// <returns>The updated user or error.</returns>
         [Authorize]
         [HttpPut("UpdateUser{id}")]
-        [ProducesResponseType(typeof(ApiResponse<User>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<UpdateUserRequest>), 200)]
         [ProducesResponseType(typeof(ApiResponse<string>), 400)]
         [ProducesResponseType(typeof(ApiResponse<string>), 404)]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateUserRequest dto)
@@ -149,23 +179,35 @@ namespace UserManager.API.Controllers
             }
 
             var emailValidator = new EmailAddressAttribute();
-            if (string.IsNullOrWhiteSpace(dto.Email) || !emailValidator.IsValid(dto.Email))
+            if (!string.IsNullOrWhiteSpace(dto.Email) && !new EmailAddressAttribute().IsValid(dto.Email))
             {
                 return BadRequest(ApiResponse<string>.Fail("Email is not valid."));
             }
 
-
-            if (dto.Password.Length < 6)
+            if (!string.IsNullOrWhiteSpace(dto.Password))
             {
-                return BadRequest(ApiResponse<string>.Fail("Password must be at least 6 characters."));
+                if (dto.Password.Length < 6)
+                {
+                    return BadRequest(ApiResponse<string>.Fail("Password must be at least 6 characters."));
+                }
+
+                user.Password = dto.Password;
             }
 
-            user.FirstName = dto.FirstName;
-            user.LastName = dto.LastName;
-            user.IdentificationTypeId = dto.IdentificationTypeId;
-            user.IdentificationNumber = dto.IdentificationNumber;
-            user.Email = dto.Email;
-            user.Password = dto.Password;
+            if (!string.IsNullOrWhiteSpace(dto.FirstName))
+                user.FirstName = dto.FirstName;
+
+            if (!string.IsNullOrWhiteSpace(dto.LastName))
+                user.LastName = dto.LastName;
+
+            if (dto.IdentificationTypeId > 0)
+                user.IdentificationTypeId = dto.IdentificationTypeId;
+
+            if (!string.IsNullOrWhiteSpace(dto.IdentificationNumber))
+                user.IdentificationNumber = dto.IdentificationNumber;
+
+            if (!string.IsNullOrWhiteSpace(dto.Email))
+                user.Email = dto.Email;
 
             await _userService.UpdateAsync(user);
             return Ok(ApiResponse<User>.Ok(user, "User updated."));
