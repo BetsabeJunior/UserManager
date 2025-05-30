@@ -14,7 +14,7 @@ namespace UserManager.Application.DTOS
         /// <summary>
         /// The user first name.
         /// </summary>
-        public string FirstName { get; set; } = null!;
+        public string FirstName { get; set; } = ""!;
 
         /// <summary>
         /// The user last name.
